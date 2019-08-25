@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { fadeIn } from 'react-animations';
+import store from 'store';
+
 import { 
     Section, Container, 
     Form, Button, Notification 
@@ -9,12 +11,24 @@ class AppBody extends Component {
 
     constructor () {
         super();
+
+        // Get the todos from local storage.
+        var storedState = store.get('todo_state');        
+        
+        var counter  = 0;
+        var todos    = [];        
+        if (undefined !== storedState) {
+            var counter  = storedState.counter;
+            var todos    = storedState.todos;            
+        }
         this.state = {
-            counter: 0,
-            task : '',
+            counter : counter,
+            task    : '',
             priority: 'light',
-            todos: []
+            todos   : todos
         };
+
+        this.setState();
     }
 
     render () {
@@ -59,7 +73,10 @@ class AppBody extends Component {
             todos: this.state.todos.filter( (todo, index, todos) => {
                 return todo.key !== key;
             })
-        })
+        }, () => {
+            // Update the todos in local storage.
+            store.set('todo_state', this.state); 
+        });        
     }
 
     onAdd = event => {
@@ -71,7 +88,11 @@ class AppBody extends Component {
             }],
             counter: this.state.counter + 1,        
             task: ''
-        });
+        }, () => {
+            // Update the todos in local storage.
+            store.set('todo_state', this.state); 
+        }); 
+        
     }
 
     onChangePriority = event => {        
