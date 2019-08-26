@@ -29,9 +29,7 @@ class AppBody extends Component {
             task    : '',
             priority: 'light',
             todos   : todos
-        };
-
-        this.setState();
+        };        
     }
 
     render () {
@@ -52,7 +50,7 @@ class AppBody extends Component {
                                 <option value="light">Low</option>
                                 <option value="primary">Normal</option>
                                 <option value="success">Medium</option>
-                                <option value="danger" selected={'high' === this.state.priority}>High</option>
+                                <option value="danger">High</option>
                             </Form.Select>
                         </Form.Control>
                         {/* ./ Task priority */}
