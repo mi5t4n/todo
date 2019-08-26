@@ -15,12 +15,15 @@ class AppBody extends Component {
         // Get the todos from local storage.
         var storedState = store.get('todo_state');        
         
+        // Initalize the variables to the local storage.
         var counter  = 0;
         var todos    = [];        
         if (undefined !== storedState) {
             var counter  = storedState.counter;
             var todos    = storedState.todos;            
         }
+
+        // Initialize the state.
         this.state = {
             counter : counter,
             task    : '',
@@ -36,9 +39,13 @@ class AppBody extends Component {
             <Section className="pt-0">
                 <Container>
                     <Form.Field className="has-addons">
+                        {/* Task input */}
                         <Form.Control className="is-expanded">
                             <Form.Input type="text" placeholder="Task" onChange={this.onChangeTask} value={this.state.task} />                        
                         </Form.Control>
+                        {/* ./ Task input */}
+
+                        {/* Task priority */}
                         <Form.Control>
                             <Form.Select name="priority" onChange={this.onChangePriority} value={this.state.priority}>
                                 <option value="light">Select priority</option>
@@ -48,14 +55,19 @@ class AppBody extends Component {
                                 <option value="danger" selected={'high' === this.state.priority}>High</option>
                             </Form.Select>
                         </Form.Control>
+                        {/* ./ Task priority */}
+
+                        {/* Task add button */}
                         <Form.Control>
                             <Button color="info" className="px-4" onClick={this.onAdd}>Add</Button>
                         </Form.Control>
+                        {/* ./ Task add button */}
                     </Form.Field>        
                 </Container>
 
+                {/* Task list */}
                 <Container>
-                    {this.state.todos.map(todo => (
+                    {this.state.todos.map(todo => (                        
                         <fadeIn>
                             <Notification key={todo.key} className="py-1 mt-1 mb-1" color={todo.priority}>
                                 {todo.msg}
@@ -64,10 +76,14 @@ class AppBody extends Component {
                         </fadeIn>
                     ))}                    
                 </Container>
+                {/* ./ Task list */}
             </Section>
         );
     }
 
+    /**
+     * Remove the todo from the list.
+     */
     onTaskDelete = key => {
         this.setState({
             todos: this.state.todos.filter( (todo, index, todos) => {
@@ -79,6 +95,9 @@ class AppBody extends Component {
         });        
     }
 
+    /**
+     * Add the todo to the list.
+     */
     onAdd = event => {
         this.setState({
             todos : [...this.state.todos, {
@@ -95,12 +114,18 @@ class AppBody extends Component {
         
     }
 
+    /**
+     * Change the state priority.
+     */
     onChangePriority = event => {        
         this.setState({
             priority: event.target.value
         });
     }
 
+    /**
+     * Change the task input.
+     */
     onChangeTask = event => {
         this.setState({
             task: event.target.value

@@ -8,7 +8,7 @@ const AppFooter = () => {
             <Hero.Body />
             <Hero.Footer>
                 <Footer>
-                    <Content style={{ textAlign: 'center'}}>
+                    <Content style={{ textAlign: 'center' }}>
                         <Container>
                             <p>
                                 <strong>ToDo</strong> by <a href="https://sagartamang.com.np">Sagar Tamang</a>
