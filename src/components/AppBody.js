@@ -36,31 +36,33 @@ class AppBody extends Component {
         return (
             <Section className="pt-0">
                 <Container>
-                    <Form.Field className="has-addons">
-                        {/* Task input */}
-                        <Form.Control className="is-expanded">
-                            <Form.Input type="text" placeholder="Task" onChange={this.onChangeTask} value={this.state.task} />                        
-                        </Form.Control>
-                        {/* ./ Task input */}
+                    <form>
+                        <Form.Field className="has-addons">
+                            {/* Task input */}
+                            <Form.Control className="is-expanded">
+                                <Form.Input type="text" placeholder="Task" onChange={this.onChangeTask} value={this.state.task} />                        
+                            </Form.Control>
+                            {/* ./ Task input */}
 
-                        {/* Task priority */}
-                        <Form.Control>
-                            <Form.Select name="priority" onChange={this.onChangePriority} value={this.state.priority}>
-                                <option value="light">Select priority</option>
-                                <option value="light">Low</option>
-                                <option value="primary">Normal</option>
-                                <option value="success">Medium</option>
-                                <option value="danger">High</option>
-                            </Form.Select>
-                        </Form.Control>
-                        {/* ./ Task priority */}
+                            {/* Task priority */}
+                            <Form.Control>
+                                <Form.Select name="priority" onChange={this.onChangePriority} value={this.state.priority}>
+                                    <option value="light">Select priority</option>
+                                    <option value="light">Low</option>
+                                    <option value="primary">Normal</option>
+                                    <option value="success">Medium</option>
+                                    <option value="danger">High</option>
+                                </Form.Select>
+                            </Form.Control>
+                            {/* ./ Task priority */}
 
-                        {/* Task add button */}
-                        <Form.Control>
-                            <Button color="info" className="px-4" onClick={this.onAdd}>Add</Button>
-                        </Form.Control>
-                        {/* ./ Task add button */}
-                    </Form.Field>        
+                            {/* Task add button */}
+                            <Form.Control>
+                                <Button type="submit" color="info" className="px-4" onClick={this.onAdd}>Add</Button>
+                            </Form.Control>
+                            {/* ./ Task add button */}
+                        </Form.Field>        
+                    </form>
                 </Container>
 
                 {/* Task list */}
@@ -97,6 +99,8 @@ class AppBody extends Component {
      * Add the todo to the list.
      */
     onAdd = event => {
+        event.preventDefault();
+
         this.setState({
             todos : [...this.state.todos, {
                 priority: this.state.priority,
