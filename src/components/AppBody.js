@@ -19,8 +19,8 @@ class AppBody extends Component {
         var counter  = 0;
         var todos    = [];        
         if (undefined !== storedState) {
-            var counter  = storedState.counter;
-            var todos    = storedState.todos;            
+            counter  = storedState.counter;
+            todos    = storedState.todos;            
         }
 
         // Initialize the state.
